@@ -233,11 +233,12 @@ $(document).ready(function () {
 	});
 });
 
+//~ Modal Data Mobil Pengembalian~/ /
 $(document).ready(function () {
 	$('#example1').on('click', '.modal_pengembalian', function () {
 		var pengembalian_id = $(this).attr('id');
 		$.ajax({
-			url: base_url + "pengembalian/getDataPengembalianById/",
+			url: base_url + "pengembalian/getDataPengById/",
 			method: "POST",
 			data: {
 				pengembalian_id: pengembalian_id

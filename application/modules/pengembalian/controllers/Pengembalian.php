@@ -36,39 +36,100 @@ class Pengembalian extends MX_Controller
     $this->load->view('detail_foto_mobil', $data);
   }
 
-  function getDataPengembalianById()
+  // function getDataPengembalianById()
+  // {
+  //   $pengembalian_id = htmlspecialchars($this->input->post('pengembalian_id', true));
+  //   if (isset($pengembalian_id) and !empty($pengembalian_id)) {
+  //     $query = $this->_model->getDataPengembalianById($pengembalian_id);
+  //     $output = '';
+  //     foreach ($query as $i) {
+  //       $output .= '
+  //       <table class="table-modal-forward">
+  //       <tr>
+  //         <td width="100px">Nama Mobil</td>
+  //         <td width="50px">:</td>
+  //         <td width="400px">' . $i['nama_user'] . '</td>
+  //       </tr>
+  //       <tr>
+  //         <td width="100px">Tipe</td>
+  //         <td width="50px">:</td>
+  //         <td width="400px">' . $i['nama_mobil'] . '</td>
+  //       </tr>
+  //       <tr>
+  //         <td width="100px">Transmisi</td>
+  //         <td width="50px">:</td>
+  //         <td width="400px">' . $i['tipe'] . '</td>
+  //       </tr>
+  //       <tr>
+  //         <td width="100px">Tahun</td>
+  //         <td width="50px">:</td>
+  //         <td width="400px">' . $i['start_date'] . '</td>
+  //       </tr>
+  //       <tr>
+  //         <td width="100px">Harga</td>
+  //         <td width="50px">:</td>
+  //         <td width="400px">' . $this->wandalibs->_rupiah($i['harga']) . '</td>
+  //       </tr>
+  //     </table>
+  //       <div class="text-center pt-3">
+  //     <img src="' . base_url() . 'assets/img/mobil/' . $i['foto_mobil'] . '" style="width: 200px;" class="img-thumbnail">
+  //       </div>  
+  //     ';
+  //     }
+  //     echo $output;
+  //   } else {
+  //     echo '<p class="text-center text-danger">Data tidak ditemukan</p>';
+  //   }
+  // }
+
+  function getDataPengById()
   {
-    $pengembalian_id = htmlspecialchars($this->input->post('pengembalian_id', true));
+    $pengembalian_id = $this->input->post('pengembalian_id');
     if (isset($pengembalian_id) and !empty($pengembalian_id)) {
       $query = $this->_model->getDataPengembalianById($pengembalian_id);
       $output = '';
       foreach ($query as $i) {
         $output .= '
         <table class="table-modal-forward">
-        <tr>
-          <td width="100px">Nama Mobil</td>
+         <tr>
+          <td width="200px">Nama Peminjam</td>
           <td width="50px">:</td>
           <td width="400px">' . $i['nama_user'] . '</td>
         </tr>
         <tr>
-          <td width="100px">Tipe</td>
+          <td width="200px">Nama Mobil</td>
           <td width="50px">:</td>
           <td width="400px">' . $i['nama_mobil'] . '</td>
         </tr>
         <tr>
-          <td width="100px">Transmisi</td>
+          <td width="200px">Tipe</td>
           <td width="50px">:</td>
           <td width="400px">' . $i['tipe'] . '</td>
         </tr>
         <tr>
-          <td width="100px">Tahun</td>
+          <td width="200px">Tanggal Pinjam</td>
           <td width="50px">:</td>
           <td width="400px">' . $i['start_date'] . '</td>
         </tr>
         <tr>
-          <td width="100px">Harga</td>
+          <td width="200px">Estimasi Tanggal Kembali</td>
+          <td width="50px">:</td>
+          <td width="400px">' . $i['end_date'] . '</td>
+        </tr>
+          <tr>
+          <td width="200px">Tanggal Kembali</td>
+          <td width="50px">:</td>
+          <td width="400px">' . $i['create_date'] . '</td>
+        </tr>
+        <tr>
+          <td width="200px">Harga</td>
           <td width="50px">:</td>
           <td width="400px">' . $this->wandalibs->_rupiah($i['harga']) . '</td>
+        </tr>
+         <tr>
+          <td width="200px">Denda</td>
+          <td width="50px">:</td>
+          <td width="400px">' . $this->wandalibs->_rupiah($i['denda']) . '</td>
         </tr>
       </table>
         <div class="text-center pt-3">
@@ -82,110 +143,49 @@ class Pengembalian extends MX_Controller
     }
   }
 
-  function getDataPengById()
-  {
-    $pengembalian_id = $this->input->post('pengembalian_id');
-    if (isset($pengembalian_id) and !empty($pengembalian_id)) {
-      $query = $this->_model->getDataPengembalianById($pengembalian_id);
-      $output = '';
-      foreach ($query as $i) {
-        $output .= '
-        <table class="table-modal-forward">
-         <tr>
-          <td width="100px">Nama Peminjam</td>
-          <td width="50px">:</td>
-          <td width="400px">' . $i['nama_user'] . '</td>
-        </tr>
-        <tr>
-          <td width="100px">Nama Mobil</td>
-          <td width="50px">:</td>
-          <td width="400px">' . $i['nama_mobil'] . '</td>
-        </tr>
-        <tr>
-          <td width="100px">Tipe</td>
-          <td width="50px">:</td>
-          <td width="400px">' . $i['tipe'] . '</td>
-        </tr>
-        <tr>
-          <td width="100px">Tanggal Pinjam</td>
-          <td width="50px">:</td>
-          <td width="400px">' . $i['start_date'] . '</td>
-        </tr>
-        <tr>
-          <td width="100px">Estimasi Tanggal Kembali</td>
-          <td width="50px">:</td>
-          <td width="400px">' . $i['end_date'] . '</td>
-        </tr>
-          <tr>
-          <td width="100px">Tanggal Kembali</td>
-          <td width="50px">:</td>
-          <td width="400px">' . $i['create_date'] . '</td>
-        </tr>
-        <tr>
-          <td width="100px">Harga</td>
-          <td width="50px">:</td>
-          <td width="400px">' . $this->wandalibs->_rupiah($i['harga']) . '</td>
-        </tr>
-         <tr>
-          <td width="100px">Denda</td>
-          <td width="50px">:</td>
-          <td width="400px">' . $this->wandalibs->_rupiah($i['denda']) . '</td>
-        </tr>
-      </table>
-        <div class="text-center pt-3">
-      <img src="' . base_url() . 'assets/img/mobil/' . $i['foto'] . '" style="width: 200px;" class="img-thumbnail">
-        </div>  
-      ';
-      }
-      echo $output;
-    } else {
-      echo '<p class="text-center text-danger">Data tidak ditemukan</p>';
-    }
-  }
-
-  function getDataById()
-  {
-    $mobil_id = htmlspecialchars($this->input->post('mobil_id', true));
-    if (isset($mobil_id) and !empty($mobil_id)) {
-      $query = $this->_model->getDataMobilById($mobil_id);
-      $output = '';
-      foreach ($query as $i) {
-        $output .= '
-        <table class="table-modal-forward">
-        <tr>
-          <td width="100px">Nama Mobil</td>
-          <td width="50px">:</td>
-          <td width="400px">' . $i['nama'] . '</td>
-        </tr>
-        <tr>
-          <td width="100px">Tipe</td>
-          <td width="50px">:</td>
-          <td width="400px">' . $i['tipe'] . '</td>
-        </tr>
-        <tr>
-          <td width="100px">Transmisi</td>
-          <td width="50px">:</td>
-          <td width="400px">' . $i['transmisi'] . '</td>
-        </tr>
-        <tr>
-          <td width="100px">Tahun</td>
-          <td width="50px">:</td>
-          <td width="400px">' . $i['tahun'] . '</td>
-        </tr>
-        <tr>
-          <td width="100px">Harga</td>
-          <td width="50px">:</td>
-          <td width="400px">' . $this->wandalibs->_rupiah($i['harga']) . '</td>
-        </tr>
-      </table>
-        <div class="text-center pt-3">
-      <img src="' . base_url() . 'assets/img/mobil/' . $i['foto'] . '" style="width: 200px;" class="img-thumbnail">
-        </div>  
-      ';
-      }
-      echo $output;
-    } else {
-      echo '<p class="text-center text-danger">Data tidak ditemukan</p>';
-    }
-  }
+  // function getDataById()
+  // {
+  //   $mobil_id = htmlspecialchars($this->input->post('mobil_id', true));
+  //   if (isset($mobil_id) and !empty($mobil_id)) {
+  //     $query = $this->_model->getDataMobilById($mobil_id);
+  //     $output = '';
+  //     foreach ($query as $i) {
+  //       $output .= '
+  //       <table class="table-modal-forward">
+  //       <tr>
+  //         <td width="100px">Nama Mobil</td>
+  //         <td width="50px">:</td>
+  //         <td width="400px">' . $i['nama'] . '</td>
+  //       </tr>
+  //       <tr>
+  //         <td width="100px">Tipe</td>
+  //         <td width="50px">:</td>
+  //         <td width="400px">' . $i['tipe'] . '</td>
+  //       </tr>
+  //       <tr>
+  //         <td width="100px">Transmisi</td>
+  //         <td width="50px">:</td>
+  //         <td width="400px">' . $i['transmisi'] . '</td>
+  //       </tr>
+  //       <tr>
+  //         <td width="100px">Tahun</td>
+  //         <td width="50px">:</td>
+  //         <td width="400px">' . $i['tahun'] . '</td>
+  //       </tr>
+  //       <tr>
+  //         <td width="100px">Harga</td>
+  //         <td width="50px">:</td>
+  //         <td width="400px">' . $this->wandalibs->_rupiah($i['harga']) . '</td>
+  //       </tr>
+  //     </table>
+  //       <div class="text-center pt-3">
+  //     <img src="' . base_url() . 'assets/img/mobil/' . $i['foto'] . '" style="width: 200px;" class="img-thumbnail">
+  //       </div>  
+  //     ';
+  //     }
+  //     echo $output;
+  //   } else {
+  //     echo '<p class="text-center text-danger">Data tidak ditemukan</p>';
+  //   }
+  // }
 }

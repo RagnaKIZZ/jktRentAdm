@@ -43,8 +43,8 @@
                   <td><small><?php echo $i['create_date'] ?></small></td>
                   <td><small><?php echo $this->wandalibs->_rupiah($i['denda']) ?></small></td>
                   <td>
-                    <button class="btn btn-success btn-xs view_mobil_pengembalian" id="<?= $i['mobil_id'] ?>"><i class="fa fa-search"></i> Detail</button>
-                    <button class="btn btn-success btn-xs modal_pengembalian" id="<?= $i['pengembalian_id'] ?>"><i class="fa fa-search"></i> Detail Pengembalian</button>
+                    <!-- <button class="btn btn-success btn-xs view_mobil_pengembalian" id="<?= $i['mobil_id'] ?>"><i class="fa fa-search"></i> Detail</button> -->
+                    <button class="btn btn-success btn-xs modal_pengembalian" id="<?= $i['pengembalian_id'] ?>"><i class="fa fa-search"></i> Detail</button>
                   </td>
                 </tr>
               <?php endforeach; ?>
@@ -54,6 +54,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- Modal Pengembalian  -->
 <div class="modal fade" id="modal_detail_pengembalian">
