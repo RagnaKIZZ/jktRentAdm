@@ -35,7 +35,6 @@ class Wandalibs
             'no_hp'             => $query['no_hp'],
             'user_access'       => $query['user_access'],
             'foto'              => $query['foto'],
-            'bidang'            => $query['bidang'],
             'active'            => $query['active'],
             'date_created'      => $query['date_created']
         ];

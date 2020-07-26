@@ -62,8 +62,8 @@
             </div>
           </div>
         </form>
-        <p class="mb-0 one-da-text-unlink" style="font-size: 14px;">Tidak bisa login? <a href="#" class="one-da-text-unlink one-da-text-tosca swalDefaultError" style="font-size: 14px;">Lupa password</a></p>
-        <p class="mb-0 one-da-text-unlink" style="font-size: 14px;"> Belum punya akun? <a href="#" class="one-da-text-unlink one-da-text-tosca swalDefaultError">Register</a></p>
+        <!-- <p class="mb-0 one-da-text-unlink" style="font-size: 14px;">Tidak bisa login? <a href="#" class="one-da-text-unlink one-da-text-tosca swalDefaultError" style="font-size: 14px;">Lupa password</a></p>
+        <p class="mb-0 one-da-text-unlink" style="font-size: 14px;"> Belum punya akun? <a href="#" class="one-da-text-unlink one-da-text-tosca swalDefaultError">Register</a></p> -->
       </div>
     </div>
   </div>

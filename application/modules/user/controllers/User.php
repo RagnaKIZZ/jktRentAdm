@@ -125,12 +125,12 @@ class User extends MX_Controller
     }
   }
 
-  function profileUser($user_id)
+  function profileUser()
   {
     $data['title']      = $this->session->userdata('nama');
     $data['breadcumb']  = $this->session->userdata('nama');
     $data['contents']   = 'profile_user';
-    $data['getProfileUser'] = $this->p->getProfileUser($user_id);
+    // $data['getProfileUser'] = $this->p->getProfileUser();
     $this->load->view('templates/core', $data);
   }
 

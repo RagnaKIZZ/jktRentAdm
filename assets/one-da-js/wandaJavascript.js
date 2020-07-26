@@ -233,6 +233,23 @@ $(document).ready(function () {
 	});
 });
 
+$(document).ready(function () {
+	$('#example1').on('click', '.modal_pengembalian', function () {
+		var pengembalian_id = $(this).attr('id');
+		$.ajax({
+			url: base_url + "pengembalian/getDataPengembalianById/",
+			method: "POST",
+			data: {
+				pengembalian_id: pengembalian_id
+			},
+			success: function (data) {
+				$('#result_detail_mobil').html(data);
+				$('#modal_detail_mobil').modal('show');
+			}
+		});
+	});
+});
+
 //~ Modal Edit User~//
 $(document).ready(function () {
 	// $('#form-edit-user')[0].reset();

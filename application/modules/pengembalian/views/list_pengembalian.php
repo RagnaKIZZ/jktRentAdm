@@ -18,11 +18,13 @@
             <thead>
               <tr>
                 <th>No</th>
-                <th>Nama Pengembalian</th>
+                <th>Nama Peminjam</th>
+                <th>Nama Admin</th>
                 <th>Nama Mobil</th>
-                <th>Harga</th>
                 <th>Tipe</th>
-                <th>Foto</th>
+                <th>Harga</th>
+                <th>Tanggal Kembali</th>
+                <th>Denda</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -34,16 +36,37 @@
                 <tr>
                   <td><small><?php echo $no++ ?></small></td>
                   <td><small><?php echo $i['nama_user'] ?></small></td>
+                  <td><small><?php echo $i['nama_admin'] ?></small></td>
                   <td><small><?php echo $i['nama_mobil'] ?></small></td>
-                  <td><small><?php echo $this->wandalibs->_rupiah($i['harga']) ?></small></td>
                   <td><small><?php echo $i['tipe'] ?></small></td>
-                  <td><a href="<?= base_url('pengembalian/getFotoMobil/') . $i['mobil_id'] . ' " data-toggle="lightbox"><img src="' . base_url() . 'assets/img/mobil/' . $i['foto'] ?>" style="width: 50px; height: 50px;"></a></td>
+                  <td><small><?php echo $this->wandalibs->_rupiah($i['harga']) ?></small></td>
+                  <td><small><?php echo $i['create_date'] ?></small></td>
+                  <td><small><?php echo $this->wandalibs->_rupiah($i['denda']) ?></small></td>
                   <td>
                     <button class="btn btn-success btn-xs view_mobil_pengembalian" id="<?= $i['mobil_id'] ?>"><i class="fa fa-search"></i> Detail</button>
+                    <button class="btn btn-success btn-xs modal_pengembalian" id="<?= $i['pengembalian_id'] ?>"><i class="fa fa-search"></i> Detail Pengembalian</button>
                   </td>
                 </tr>
               <?php endforeach; ?>
           </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Pengembalian  -->
+<div class="modal fade" id="modal_detail_pengembalian">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-tosca">
+        <h4 class="modal-title"> <i class="fa fa-car"></i> Detail Pengembalian</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="card-body">
+          <div id="result_detail_pengembalian"></div>
         </div>
       </div>
     </div>
@@ -68,6 +91,23 @@
     </div>
   </div>
 </div>
+
+<!-- <div class="modal fade" id="modal_detail_pengembalian">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-tosca">
+        <h4 class="modal-title"> <i class="fa fa-car"></i> Detail Pengembalian</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="card-body">
+          <div id="result_detail_pengembalian"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
 
 <!-- Modal History transaksi -->
 <div class="modal fade" id="modal_confirm_delete_mobil">

@@ -105,4 +105,12 @@ class M_user extends CI_Model
     $res2 = $this->db->get('tb_user')->result_array();
     return $res2;
   }
+
+  function getProfileUser()
+  {
+    $this->db->select('*');
+    $this->db->where('user_id', $this->session->userdata('id'));
+    $res2 = $this->db->get('tb_user')->result_array();
+    return $res2;
+  }
 }

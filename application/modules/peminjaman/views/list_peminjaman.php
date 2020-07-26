@@ -21,10 +21,11 @@
                 <th>No</th>
                 <th>Nama Penyewa</th>
                 <th>Mobil</th>
-                <th>Alamat</th>
-                <th>Pembayaran</th>
+                <th>Alamat Cabang</th>
+                <!-- <th>Pembayaran</th> -->
                 <th>Tipe Order</th>
-                <th>Status Pembayaran</th>
+                <!-- <th>Waktu Pinjam</th> -->
+                <th>Status Peminjaman</th>
                 <th style="width: 140px;">Aksi</th>
               </tr>
             </thead>
@@ -38,7 +39,7 @@
                   <td><small><?php echo $i['nama_user'] ?></small></td>
                   <td><small><?php echo $i['nama_mobil'] ?></small></td>
                   <td><small><?php echo $i['kota'] . ' ' . $i['alamat'] ?></small></td>
-                  <td><?php echo '<small class="text-danger">' . $i['status'] . '</i></small>'; ?></td>
+                  <!-- <td><?php echo '<small class="text-danger">' . $i['status'] . '</i></small>'; ?></td> -->
                   <td>
                     <?php
                     if ($i['jenis_order'] == 1) {
@@ -48,48 +49,50 @@
                     }
                     ?>
                   </td>
+                  <!-- <td><small>
+                      <?php
+                      echo $i['start_date']
+                      ?>
+                    </small>
+                  </td> -->
                   <td>
                     <?php
-                    if ($i['status'] == 0) {
-                      echo '<small class="text-danger"><i class="fa fa-spinner fa-spin"></i> Belum Lunas</small>';
-                    } elseif ($i['status'] == 1) {
-                      echo '<small class="text-success"><i class="fa fa-check-square"></i> Lunas</small>';
+                    if ($i['status'] == 1) {
+                      echo '<small class="text-danger"><i class="fa fa-spinner fa-spin"></i> Belum dikembalikan</small>';
+                    } elseif ($i['status'] == 2) {
+                      echo '<small class="text-success"><i class="fa fa-check-square"></i> Sudah dikembalikan</small>';
                     } else {
-                      echo '<small class="text-danger"><i class="fa fa-window-close"> Dibatalkan</i></small>';
+                      echo '<small class="text-danger"><i class="fa fa-window-close"> Unknown</i></small>';
                     }
                     ?>
                   </td>
                   <td>
                     <?php
-                    if ($i['status'] == 0) {
+                    if ($i['status'] == 1) {
                       //Jika status nya belum lunas
                       echo '
                     <a href="' . base_url('peminjaman/rincian/') . $i['order_id'] . '"
                       <button class="btn btn-primary btn-xs"><i class="fa fa-search"></i> Rincian</button>
                     </a>
                     <a href="' . base_url('peminjaman/konfirmasi/') . $i['order_id'] . '"
-                      <button class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Konfirmasi</button>
+                      <button class="btn btn-success btn-xs" ><i class="fa fa-edit"></i> Konfirmasi</button>
                     </a>
                     ';
-                    } elseif ($i['status'] == 1) {
+                    } elseif ($i['status'] == 2) {
                       //Jika status nya lunas
                       echo '
                     <a href="' . base_url('peminjaman/rincian/') . $i['order_id'] . '"
                       <button class="btn btn-primary btn-xs"><i class="fa fa-search"></i> Rincian</button>
                     </a>
-                    <a href="' . base_url('peminjaman/konfirmasi/') . $i['order_id'] . '"
-                      <button class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Konfirmasi</button>
-                    </a>
+                      <button class="btn btn-success btn-xs" disabled><i class="fa fa-edit"></i> Konfirmasi</button>
                     ';
                     } else {
                       //Jika status nya cancel
                       echo '
                     <a href="' . base_url('peminjaman/rincian/') . $i['order_id'] . '"
-                      <button class="btn btn-primary btn-xs"><i class="fa fa-search"></i> Rincian</button>
+                      <button class="btn btn-primary btn-xs" ><i class="fa fa-search"></i> Rincian</button>
                     </a>
-                    <a href="' . base_url('peminjaman/konfirmasi/') . $i['order_id'] . '"
-                      <button class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Konfirmasi</button>
-                    </a>
+                      <button class="btn btn-success btn-xs" disabled><i class="fa fa-edit"></i> Konfirmasi</button>
                     ';
                     }
                     ?>

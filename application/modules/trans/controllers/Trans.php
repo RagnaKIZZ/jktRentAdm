@@ -136,15 +136,16 @@ class Trans extends MX_Controller
           </tr>
         </table>
         <hr>
+        </div>
        
         <p class="text-danger text-center">Apakah ingin dikonfirmasi</p>
         <div class="text-center">
-        <a href="' . base_url('trans/confirmTrans') . '">
+        <a href="' . base_url('trans/confirmTrans/') . $i['order_id'] . '">
           <button class="btn btn-success btn-sm mr-2"><i class="fa fa-check mr-2"></i>Iya</button>
         </a>
           <button class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-window-close mr-2"></i>Tidak</button>
         </div>
-      </div>
+     
         ';
       }
       echo $output;
@@ -165,7 +166,7 @@ class Trans extends MX_Controller
         $output .= '
         <p class="text-muted text-center">Apakah Anda yakin akan menghapus data transaksi dari ' . $i['email'] . ' ?</p>
         <div class="text-center">
-        <a href="' . $this->_cancelTrans($order_id) . '">
+        <a href="' . base_url('trans/cancelTrans/') . $i['order_id'] . '">
           <button class="btn btn-success btn-sm mr-2"><i class="fa fa-check mr-2"></i>Iya</button>
         </a>
           <button class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-window-close mr-2"></i>Tidak</button>
@@ -178,12 +179,23 @@ class Trans extends MX_Controller
     }
   }
 
-  function _cancelTrans($order_id)
+  function cancelTrans($order_id)
   {
     // $this->db->update('tb_order', ['order_id', $order_id]);
     // $this->db->update('tb_transaksi', ['order_id', $order_id]);
-    $this->session->set_flashdata('flash', 'dicancel');
-    // redirect('trans');
+    $this->_model->cancelTrans($order_id);
+    if (!empty($order_id)) {
+      $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <i class="icon fa fa-check"></i><small><b>Yeay!.</b>Berhasil dicancel</small>
+  </div>');
+    } else {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <i class="icon fa fa-window-close"></i><small><b>Yahh!.</b>Gagal dicancel</small>
+  </div>');
+    }
+    redirect('trans');
   }
 
   function _getStatusTrans($status)
@@ -204,16 +216,25 @@ class Trans extends MX_Controller
     }
   }
 
-  function confirmTrans()
+  function confirmTrans($order_id)
   {
-    $order_id = htmlspecialchars($this->input->post('order_id', true));
-    // $this->_model->confirmTrans($order_id);
-    $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+    // $order_id = htmlspecialchars($this->input->post('order_id', true));
+    $this->_model->confirmTrans($order_id);
+    if (!empty($order_id)) {
+      $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
     <i class="icon fa fa-check"></i><small><b>Yeay!.</b>Berhasil dikonfirmasi</small>
   </div>');
+    } else {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <i class="icon fa fa-check"></i><small><b>Yahh!.</b>Gagal dikonfirmasi</small>
+  </div>');
+    }
+
     redirect('trans');
   }
+
 
   function tambahTransaksi()
   {

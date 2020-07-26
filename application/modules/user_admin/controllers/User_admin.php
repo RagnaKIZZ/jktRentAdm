@@ -20,6 +20,9 @@ class User_admin extends MX_Controller
     $data['getAllUser'] = $this->p->getAllUser();
     $data['lastLogin'] = $this->wandalibs->_lastLoginUserById($email);
     $this->load->view('templates/core', $data);
+    if ($this->session->userdata('user_access') != 'administrator') {
+      redirect('dashboard');
+    }
   }
 
   function getAllTableUserAdmin()

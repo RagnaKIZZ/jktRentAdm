@@ -10,10 +10,10 @@
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <a href="<?php echo base_url('user/profileUser/') . $this->session->userdata('id') ?>"><img src="<?php echo base_url('/assets/img/profile-user/') . $this->session->userdata('foto') ?>" class="img-circle elevation-2" alt="User Image"></a>
+        <a href="<?php echo base_url('user/profileUser') ?>"><img src="<?php echo base_url('/assets/img/profile-user/') . $this->session->userdata('foto') ?>" class="img-circle elevation-2" alt="User Image"></a>
       </div>
       <div class="info">
-        <a href="<?php echo base_url('user/profileUser/') . $this->session->userdata('id') ?>" class="d-block"><?php echo $this->session->userdata('nama') ?></a>
+        <a href="<?php echo base_url('user/profileUser')  ?>" class="d-block"><?php echo $this->session->userdata('nama') ?></a>
       </div>
     </div>
 
@@ -57,12 +57,17 @@
             <p>User</p>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="<?php echo base_url('user_admin') ?>" class="nav-link">
-            <i class="nav-icon fa fa-user"></i>
-            <p>User Admin</p>
-          </a>
-        </li>
+        <?php
+        if ($this->session->userdata('user_access') == 'administrator') { ?>
+          <li class="nav-item">
+            <a href="<?php echo base_url('user_admin') ?>" class="nav-link">
+              <i class="nav-icon fa fa-user"></i>
+              <p>User Admin</p>
+            </a>
+          </li>
+        <?php }
+        ?>
+
         <li class="nav-item">
           <a href="<?php echo base_url('logout/logoutUser') ?>" class="nav-link">
             <i class="nav-icon fas fa-power-off"></i>
